@@ -1,0 +1,30 @@
+zh:
+  label_webhook: "Webhook"
+  label_webhook_settings: "Webhook设置"
+  label_webhook_enabled: "启用Webhook"
+  label_webhook_url: "Webhook地址"
+  label_webhook_secret_token: "密钥令牌"
+  label_status_templates: "状态通知模板"
+  label_issue_status: "任务状态"
+  label_notification_template: "通知模板"
+  label_enabled_statuses: "启用通知的任务状态"
+  
+  text_webhook_url_info: "钉钉机器人Webhook地址"
+  text_webhook_secret_token_info: "钉钉机器人签名密钥（如果不使用签名可留空）"
+  text_status_templates_info: "为每个任务状态配置通知模板。可使用以下占位符（点击右侧问号查看详细说明）："
+  text_enabled_statuses_info: "选择哪些任务状态变更时需要发送通知（必须至少勾选一个状态）"
+  
+  placeholder_notification_template: "请输入通知消息模板"
+  
+  field_user: "用户"
+  field_task: "任务"
+  field_status: "状态"
+  field_project: "项目"
+  field_url: "链接"
+  field_notes: "备注"
+  field_priority: "优先级"
+  field_tracker: "跟踪标签"
+  field_assigned_to: "指派人"
+  
+  notice_webhook_sent: "Webhook通知发送成功"
+  notice_webhook_failed: "Webhook通知发送失败"

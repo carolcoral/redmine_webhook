@@ -1,0 +1,30 @@
+en:
+  label_webhook: "Webhook"
+  label_webhook_settings: "Webhook Settings"
+  label_webhook_enabled: "Enable Webhook"
+  label_webhook_url: "Webhook URL"
+  label_webhook_secret_token: "Secret Token"
+  label_status_templates: "Status Notification Templates"
+  label_issue_status: "Issue Status"
+  label_notification_template: "Notification Template"
+  label_enabled_statuses: "Enabled Statuses for Notification"
+  
+  text_webhook_url_info: "DingTalk robot webhook URL"
+  text_webhook_secret_token_info: "Optional secret token for DingTalk robot signature (leave empty if not using signature)"
+  text_status_templates_info: "Configure notification templates for each issue status. Available placeholders (click the help icon for details):"
+  text_enabled_statuses_info: "Select which issue statuses should trigger notifications (must select at least one status)"
+  
+  placeholder_notification_template: "Enter notification message template"
+  
+  field_user: "User"
+  field_task: "Task"
+  field_status: "Status"
+  field_project: "Project"
+  field_url: "URL"
+  field_notes: "Notes"
+  field_priority: "Priority"
+  field_tracker: "Tracker"
+  field_assigned_to: "Assigned To"
+  
+  notice_webhook_sent: "Webhook notification sent successfully"
+  notice_webhook_failed: "Failed to send webhook notification"

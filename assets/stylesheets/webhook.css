@@ -1,0 +1,52 @@
+/* Webhook Plugin Styles */
+
+.webhook-settings table.list {
+  width: 100%;
+}
+
+.webhook-settings table.list th,
+.webhook-settings table.list td {
+  padding: 8px;
+  vertical-align: middle;
+}
+
+.webhook-settings table.list input[type="text"] {
+  width: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.webhook-settings .info {
+  color: #666;
+  font-size: 0.9em;
+  font-style: italic;
+  display: block;
+  margin-top: 5px;
+}
+
+.webhook-settings fieldset.box {
+  margin-top: 20px;
+}
+
+.webhook-settings .box.tabular p {
+  padding-left: 180px;
+}
+
+.webhook-settings .box.tabular label {
+  margin-left: -180px;
+  width: 175px;
+}
+
+/* Button styles for select all */
+.webhook-settings .button-small {
+  padding: 4px 8px;
+  font-size: 0.9em;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.webhook-settings .button-small:hover {
+  background-color: #eee;
+}
