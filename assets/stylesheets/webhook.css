@@ -50,3 +50,13 @@
 .webhook-settings .button-small:hover {
   background-color: #eee;
 }
+
+#main-menu li {
+  float:none;
+  list-style-type:none;
+  margin: 0px 2px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  white-space:nowrap;
+  display:inline-block;
+  line-height: 1.7em;
+}
