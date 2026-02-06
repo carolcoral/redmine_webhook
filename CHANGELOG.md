@@ -8,9 +8,20 @@
 - 改进JavaScript代码质量（IIFE避免全局污染、严格模式）
 - 完善错误处理和日志记录
 
+### 新增功能
+- **智能@提醒功能增强**: 基于用户手机号实现真正的钉钉@提醒
+  - 从users表的phone字段获取指派人手机号
+  - 有手机号时通过`atMobiles`参数实现真正的@提醒
+  - 无手机号时仅显示`@昵称`，不触发真正@提醒
+
 ### UI/UX优化
 - 优化子项目选择界面和模板输入体验
+- 在模板配置页面添加@功能使用提示
 - 响应式设计改进
+
+### 文档更新
+- 更新README.md中@功能说明（基于phone字段而非redmine_users插件）
+- 补充手机号配置要求和效果说明
 
 ### 升级说明
 ```bash
@@ -18,6 +29,8 @@ cd /path/to/redmine
 bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 bundle exec rake tmp:cache:clear RAILS_ENV=production
 ```
+
+**注意**: 如需使用完整的@提醒功能，请在users表中添加phone字段并填写用户手机号。
 
 ---
 

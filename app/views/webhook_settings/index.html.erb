@@ -151,6 +151,16 @@
       <% end %>
     </div>
     
+    <div style="margin-bottom: 15px; padding: 10px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 3px;">
+      <p style="margin: 0; font-weight: bold; color: #856404;">💡 重要提示：关于@功能</p>
+      <p style="margin: 5px 0 0 0; color: #856404; font-size: 0.9em;">
+        • 如需实现真正的钉钉@功能，需安装 
+        <strong style="color: #d39e00;">redmine_users</strong> 插件以获取用户手机号<br>
+        • 指派人信息需要在users表中存在phone字段并填写手机号<br>
+        • 未安装redmine_users插件时，仅显示@昵称，无法真正@提醒
+      </p>
+    </div>
+    
     <table class="list">
       <thead>
         <tr>
