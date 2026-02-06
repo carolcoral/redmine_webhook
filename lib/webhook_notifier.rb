@@ -67,6 +67,26 @@ class WebhookNotifier
       message_text.gsub!(placeholder, value.to_s)
     end
 
+    # 构建at信息（使用钉钉昵称方式）
+    at_info = {
+      isAtAll: false  # 不@所有人
+    }
+    
+    # 如果任务有指派人，使用钉钉@昵称方式
+    if issue.assigned_to && issue.assigned_to.name != '未指派'
+      # 检查消息中是否已包含@指派人，避免重复
+      unless message_text.include?("@#{issue.assigned_to.name}")
+        # 在消息末尾添加@指派人（钉钉会自动解析并高亮）
+        message_text += " @#{issue.assigned_to.name}"
+      end
+      
+      # atMobiles用于手机号@，atDingtalkIds用于用户ID@，留空使用昵称@方式
+      # 钉钉会自动识别消息中的@昵称并高亮
+      at_info[:atMobiles] = []
+      at_info[:atDingtalkIds] = []
+      at_info[:atUserIds] = []
+    end
+
     # Check if template contains Markdown or HTML syntax
     # 检测Markdown语法: #标题, *斜体*, `代码`, _下划线_, [链接](url)
     # 检测HTML标签: <div>, <p>, <strong>, <b>, <i>, <u>, <a>, <img>, <table>, <ul>, <ol>, <li>
@@ -77,7 +97,8 @@ class WebhookNotifier
         markdown: {
           title: "#{issue.project.name} - #{issue.subject}",
           text: message_text
-        }
+        },
+        at: at_info
       }
     else
       # Use plain text format
@@ -85,7 +106,8 @@ class WebhookNotifier
         msgtype: 'text',
         text: {
           content: message_text
-        }
+        },
+        at: at_info
       }
     end
   end

@@ -123,6 +123,34 @@
       <%= hidden_field_tag "webhook_config[enabled_statuses][]", "", :id => "enabled_status_empty" %>
     </div>
     
+    <!-- 子项目同步模块 -->
+    <div class="box" style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
+      <h3 style="margin-top: 0;"><%= l(:label_sync_sub_projects) %></h3>
+      <p class="info"><%= l(:text_sync_sub_projects_info) %></p>
+      
+      <% if @sub_projects.any? %>
+        <div style="margin-bottom: 10px;">
+          <button type="button" onclick="toggleAllSubProjects(true)" class="button-small"><%= l(:button_select_all) %></button>
+          <button type="button" onclick="toggleAllSubProjects(false)" class="button-small"><%= l(:button_select_none) %></button>
+          <span style="margin-left: 10px; color: #666; font-size: 0.9em;"><%= l(:text_sub_projects_hint) %></span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; padding: 10px; max-height: 200px; overflow-y: auto; border: 1px solid #eee;">
+          <% @sub_projects.each do |project| %>
+            <label style="display: flex; align-items: center; padding: 5px;">
+              <%= check_box_tag "sub_project_ids[]",
+                  project.id,
+                  project.has_webhook_config,
+                  :id => "sub_project_#{project.id}",
+                  :name => "sub_project_ids[]" %>
+              <span style="margin-left: 5px; font-size: 0.9em;"><%= project.name %></span>
+            </label>
+          <% end %>
+        </div>
+      <% else %>
+        <p style="color: #666; font-style: italic; margin: 10px 0;"><%= l(:text_no_sub_projects) %></p>
+      <% end %>
+    </div>
+    
     <table class="list">
       <thead>
         <tr>
@@ -165,6 +193,13 @@
       checkboxes[i].checked = checked;
     }
   }
+  
+  function toggleAllSubProjects(checked) {
+    var checkboxes = document.querySelectorAll('input[name="sub_project_ids[]"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = checked;
+    }
+  }
 </script>
 
 <style>
@@ -181,4 +216,71 @@
 
 <% content_for :header_tags do %>
   <%= stylesheet_link_tag 'webhook', :plugin => 'redmine_webhook' %>
+  
+  <%# 修复菜单高亮 - 使用更可靠的方式 %>
+  <%= javascript_tag do %>
+    (function() {
+      'use strict';
+      
+      function highlightWebhookMenu() {
+        // 等待Redmine菜单初始化完成
+        setTimeout(function() {
+          var mainMenu = document.getElementById('main-menu');
+          if (!mainMenu) {
+            console.warn('[Webhook] Main menu not found');
+            return;
+          }
+          
+          // 查找webhook菜单链接
+          var webhookLink = mainMenu.querySelector('a.webhook');
+          if (!webhookLink) {
+            console.warn('[Webhook] Webhook menu link not found');
+            return;
+          }
+          
+          console.log('[Webhook] Found webhook menu link:', webhookLink);
+          
+          // 移除所有现有的selected类
+          mainMenu.querySelectorAll('li.selected').forEach(function(li) {
+            li.classList.remove('selected');
+          });
+          mainMenu.querySelectorAll('a.selected').forEach(function(a) {
+            a.classList.remove('selected');
+          });
+          
+          // 为webhook链接添加selected类
+          webhookLink.classList.add('selected');
+          console.log('[Webhook] Added selected class to webhook link');
+          
+          // 为父级li添加selected类
+          var parentLi = webhookLink.closest('li');
+          if (parentLi) {
+            parentLi.classList.add('selected');
+            console.log('[Webhook] Added selected class to parent li');
+          }
+          
+          // 如果webhook在dropdown中，也高亮父级菜单项
+          var dropdownParent = webhookLink.closest('li.has-children');
+          if (dropdownParent) {
+            dropdownParent.classList.add('selected');
+            console.log('[Webhook] Added selected class to dropdown parent');
+          }
+        }, 100); // 延时100ms确保Redmine菜单初始化完成
+      }
+      
+      // 页面加载完成后执行
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', highlightWebhookMenu);
+      } else {
+        highlightWebhookMenu();
+      }
+      
+      // 监听Turbo/Turbolinks事件（如果Redmine使用）
+      if (typeof Turbo !== 'undefined') {
+        document.addEventListener('turbo:load', highlightWebhookMenu);
+      } else if (typeof Turbolinks !== 'undefined') {
+        document.addEventListener('turbolinks:load', highlightWebhookMenu);
+      }
+    })();
+  <% end %>
 <% end %>

@@ -5,6 +5,7 @@ Redmine webhook通知插件，支持钉钉自定义机器人消息通知，实�
 [![Redmine](https://img.shields.io/badge/Redmine-6.1%2B-blue)](https://www.redmine.org/)
 [![Ruby](https://img.shields.io/badge/Ruby-2.7%2B-red)](https://www.ruby-lang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-1.0.2-orange)](CHANGELOG.md)
 
 ## ✨ 核心特性
 
@@ -13,6 +14,9 @@ Redmine webhook通知插件，支持钉钉自定义机器人消息通知，实�
 - **富文本模板**: 支持Markdown和HTML格式
 - **智能变量替换**: 9个内置占位符自动替换
 - **钉钉签名验证**: 支持钉钉机器人安全设置
+- **子项目同步**: 一键将配置同步到所有子项目
+- **智能@提醒**: 自动@任务指派人（钉钉）
+- **模块感知**: 自动检测子项目是否启用webhook模块
 
 ## 📦 快速安装
 
@@ -49,6 +53,14 @@ bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 - 使用"全选"/"全不选"快速操作
 - 必须至少勾选一个状态
 
+### 4. 子项目同步（可选）
+
+在"同步配置到子项目"区域：
+- 选择需要同步配置的子项目
+- 自动检测子项目是否启用了webhook模块
+- 未启用webhook模块的子项目将自动禁用webhook
+- 支持多级子项目（递归同步）
+
 ## 📝 通知模板
 
 ### 占位符变量
@@ -64,6 +76,28 @@ bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 | `${priority}` | 优先级 | 紧急 |
 | `${tracker}` | 跟踪类型 | Bug |
 | `${assigned_to}` | 指派人 | 李四 |
+
+### 智能@提醒 ⚠️
+
+当通知内容包含`${assigned_to}`变量或任务有指派人时，可在消息中显示指派人信息。
+
+**重要说明：**
+- **当前版本不支持真正的@功能**，仅在消息内容中显示指派人名称
+- 如需实现真正的钉钉@功能，需要：
+  1. 安装[redmine_users](https://github.com/carolcoral/redmine_users)插件获取用户手机号
+  2. 在钉钉机器人中配置用户手机号映射
+  3. 在消息结构中传入`atMobiles`参数
+
+**示例：**
+```markdown
+${user} 更新了任务 "${task}"
+状态：${status}
+指派人：${assigned_to}
+
+查看详情：${url}
+```
+
+> **注意**: 当前版本仅在消息文本中显示指派人名称，不会真正触发钉钉的@提醒功能。
 
 ### 模板示例
 
@@ -94,6 +128,8 @@ ${user} 更新了 ${task} 状态为 ${status}
 - **状态流转**: 任务状态变更时自动提醒
 - **关键状态**: 仅"已完成"等关键状态通知负责人
 - **全流程跟踪**: 所有状态变化实时同步
+- **项目层级同步**: 父项目配置一键同步到所有子项目
+- **团队协作**: 自动@相关成员，提升响应效率
 
 ## 🔧 技术栈
 
@@ -101,10 +137,15 @@ ${user} 更新了 ${task} 状态为 ${status}
 - **Ruby**: 2.7+
 - **Rails**: 6.1+ (兼容 Rails 7.2)
 - **数据库**: SQLite/PostgreSQL/MySQL
+- **消息格式**: Markdown/纯文本（自动检测）
 
 ## 📄 许可证
 
 MIT License - 查看 [LICENSE](LICENSE) 文件
+
+## 📋 更新日志
+
+详细的版本更新记录请查看 [CHANGELOG.md](CHANGELOG.md) 文件。
 
 ## 🤝 贡献
 

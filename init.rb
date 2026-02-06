@@ -12,7 +12,7 @@ Redmine::Plugin.register :redmine_webhook do
   name 'Redmine Webhook Plugin'
   author 'carolcoral'
   description 'Webhook notification plugin for Redmine with DingTalk support'
-  version '1.0.0'
+  version '1.0.2'
   url 'https://github.com/carolcoral/redmine_webhook'
   author_url 'https://github.com/carolcoral'
 

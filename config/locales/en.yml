@@ -8,11 +8,17 @@ en:
   label_issue_status: "Issue Status"
   label_notification_template: "Notification Template"
   label_enabled_statuses: "Enabled Statuses for Notification"
+  label_sync_sub_projects: "Sync to Sub-projects"
+  button_select_all: "Select All"
+  button_select_none: "Select None"
   
   text_webhook_url_info: "DingTalk robot webhook URL"
   text_webhook_secret_token_info: "Optional secret token for DingTalk robot signature (leave empty if not using signature)"
   text_status_templates_info: "Configure notification templates for each issue status. Available placeholders (click the help icon for details):"
   text_enabled_statuses_info: "Select which issue statuses should trigger notifications (must select at least one status)"
+  text_sync_sub_projects_info: "Bulk sync the current project's webhook configuration to selected sub-projects"
+  text_sub_projects_hint: "Only includes sub-projects of the current project (including multi-level)"
+  text_no_sub_projects: "The current project has no sub-projects"
   
   placeholder_notification_template: "Enter notification message template"
   
@@ -28,3 +34,4 @@ en:
   
   notice_webhook_sent: "Webhook notification sent successfully"
   notice_webhook_failed: "Failed to send webhook notification"
+  notice_sub_projects_synced: "Successfully synced to %{count} sub-projects"
