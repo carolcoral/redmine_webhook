@@ -10,7 +10,7 @@ Redmine webhook通知插件，支持钉钉自定义机器人消息通知，实�
 
 
 ## 获取方式
-- 通过 [**XIN·DU Product**](https://blog.xindu.site/shop/product/2) 直接在线购买
+- 通过 [**XIN·DU Product**](https://blog.xindu.site/product/redmine_webhook) 直接在线购买
 - 更多内容可联系 [**咸鱼**](https://www.goofish.com/item?spm=a21ybx.personal.feeds.1.482c6ac2BLkUG3&id=1022520404886&categoryId=50023914)
 
 ## ✨ 核心特性
