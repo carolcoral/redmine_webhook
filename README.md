@@ -7,6 +7,12 @@ Redmine webhook通知插件，支持钉钉自定义机器人消息通知，实�
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-1.0.2-orange)](CHANGELOG.md)
 
+
+
+## 获取方式
+- 通过 [**XIN·DU Product**](https://blog.xindu.site/shop/product/2) 直接在线购买
+- 更多内容可联系 [**咸鱼**](https://www.goofish.com/item?spm=a21ybx.personal.feeds.1.482c6ac2BLkUG3&id=1022520404886&categoryId=50023914)
+
 ## ✨ 核心特性
 
 - **项目级独立配置**: 每个项目可独立设置Webhook
@@ -28,7 +34,3 @@ bundle install
 bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 # 重启Redmine服务
 ```
-
-## 获取方式
-#### 通过 [**XIN·DU Product**](https://blog.xindu.site/shop/product/2) 直接在线购买
-#### 更多内容可联系 [**咸鱼**](https://www.goofish.com/item?spm=a21ybx.personal.feeds.1.482c6ac2BLkUG3&id=1022520404886&categoryId=50023914)
